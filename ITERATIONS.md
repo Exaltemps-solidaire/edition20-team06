@@ -286,8 +286,38 @@ Le développeur a pointé les photos de `passation/croquis/`, pas encore examin�
     - `frontend/src/app/association/page.tsx` — hero + 4 sections (Mission, Équipe, Rapports, Actions) avec faits réels et blocs photo placeholder — sert les 2 premiers critères. ❓ Pas de vraies photos ni de vrai PDF de rapport dans la passation ; noms de l'équipe non communiqués (remplacés par des chiffres d'effectif).
     - `frontend/src/app/globals.css` — styles de la section Équipe (chiffres), des cartes d'action avec photo, et du bloc photo de l'équipe.
 
+## ⚠️ Nouvelle source trouvée : `passation/croquis/Ensemble contre le cancer des enfants.png` (2026-11-18)
+
+Le développeur a demandé de reprendre cette image à l'identique pour l'accueil. Ce n'est pas un croquis officiel comme `ecran-01` à `06` : c'est un mockup complet (bannière photo, grille « Comment souhaitez-vous agir ? » à 3 cartes photo, grille « Agir à votre manière » de 6 cartes, bandeau « Mobilisez votre organisation », bande de logos partenaires nommés, stats d'impact, méga-footer). Le reproduire à l'identique dépasse largement une itération (✂️) — découpé ci-dessous.
+
+Deux écarts signalés, non tranchés par l'agent :
+- ❗️ les logos nommés dans l'image (L'Oréal, Société Générale, Sanofi, BNP Paribas, Allianz, Crédit Mutuel) ne sont confirmés nulle part dans la passation comme partenaires réels d'Imagine for Margo — non repris, pour ne pas affirmer un partenariat non vérifié (cf. règle de `passation/contexte/association.md` : aucune affirmation hors des faits de référence). Approche générique déjà retenue sur Nous soutenir (itération 7) conservée.
+- ❗️ l'image ne montre que 3 entrées (Particulier/Entreprise/Association) alors que la segmentation retenue par l'équipe en a 4 (+ Testateurs), déjà construite depuis l'itération 1 et signalée à PM Lab 8 fois — les 4 cartes sont conservées ; à confirmer avec les cadreurs si une vraie fusion à 3 est voulue.
+
+## Itération 9 : l'accueil reprend le style visuel de la nouvelle image (hero deux colonnes, cartes avec photo et bouton plein), sans les éléments non vérifiables
+
+- **Dans le périmètre** : hero en deux colonnes (texte + photo placeholder + 2 CTA : « Faire un don » vers `/don`, « Découvrir nos actions » vers `/association`) ; titre de section « Comment souhaitez-vous agir ? » au-dessus des 4 cartes de profil (inchangées en nombre et en texte) ; chaque carte reçoit une photo placeholder en tête et un bouton plein (couleur du profil, libellé = `cta` existant) à la place du lien texte « Mon parcours → ».
+- **Hors périmètre (✂️, reporté)** : grille « Agir à votre manière » (6 cartes), bandeau « Mobilisez votre organisation », bande de logos partenaires, section stats d'impact, méga-footer, nouvelle photographie réelle, fusion à 3 profils.
+- **Critères d'acceptation** :
+  - Étant donné l'accueil, quand il s'affiche, alors le hero montre un bloc photo à côté du texte et 2 boutons d'action (« Faire un don », « Découvrir nos actions »).
+  - Étant donné l'accueil, quand il s'affiche, alors chacune des 4 cartes de profil montre une photo placeholder en tête et un bouton plein (pas un simple lien texte).
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : aucune nouvelle — ajustement visuel demandé directement par le développeur.
+- **Codage estimé** : 6-7 minutes.
+- **Bilan** :
+  - Codage réel : <1 minute.
+  - Critères satisfaits : les 3 — hero deux colonnes avec photo placeholder et 2 CTA, 4 cartes de profil avec photo placeholder + bouton plein, `/health` et `/sante` en 200 (vérifié par `curl` sur `localhost:8080`/`:8081`).
+  - `npm test` : 7 tests passent (inchangé — pur style/balisage, pas de nouvelle logique métier).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 9.
+  - **Modifications** :
+    - `frontend/src/app/page.tsx` — hero à deux colonnes avec CTA, titre de section, cartes avec photo placeholder et bouton plein — sert les 2 premiers critères. ❗️ Logos partenaires et fusion à 3 profils volontairement non repris (voir note ci-dessus).
+    - `frontend/src/app/globals.css` — styles `.hero-deux-colonnes`, `.hero-contenu`, `.hero-photo`, `.hero-ctas`, `.hero-cta-primaire`/`.hero-cta-secondaire`, `.profils-intro`, `.profil-carte-photo`, `.profil-carte-cta`.
+
 ## À venir (non détaillé)
 
 1. Écran « Qui êtes-vous ? » au lancement (persona switcher), et filtre par profil sur Le Fil (`ecran-06`).
 2. Le Fil – publication réelle par le responsable communication (étape 3 du plan de l'équipe) ; menus Trier/Période/Public/Sujet.
-3. Remplacer les blocs photo placeholder de l'Association par de vraies photos fournies par l'association.
+3. Remplacer les blocs photo placeholder de l'Association (et de l'accueil) par de vraies photos fournies par l'association.
+4. Accueil : grille « Agir à votre manière » (6 façons d'agir), bandeau « Mobilisez votre organisation », stats d'impact, méga-footer — repris du mockup `Ensemble contre le cancer des enfants.png`, après confirmation du développeur sur le périmètre.
+5. ❓ Bande de partenaires : à faire avec de vrais logos et noms confirmés par l'association, pas ceux vus dans le mockup.
