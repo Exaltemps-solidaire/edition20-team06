@@ -9,7 +9,11 @@ export default function Home() {
       <ul className="profils-liste">
         {listerProfils().map((profil) => (
           <li key={profil.slug}>
-            <Link href={`/profil/${profil.slug}`} style={{ color: profil.couleur }}>
+            <Link
+              href={`/profil/${profil.slug}`}
+              className="profil-bouton"
+              style={{ background: profil.couleur }}
+            >
               {profil.nom}
             </Link>
           </li>

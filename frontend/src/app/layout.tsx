@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { listerProfils } from "@/lib/profils";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -32,15 +31,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Link href="/" className="header-logo">
             Imagine for Margo
           </Link>
-          <nav className="header-menu" aria-label="Profils">
-            {listerProfils().map((profil) => (
-              <Link key={profil.slug} href={`/profil/${profil.slug}`}>
-                {profil.nom}
-              </Link>
-            ))}
-            <Link href="/profil/particuliers">Particuliers</Link>
-            <Link href="/profil/testateurs">Testateurs</Link>
-          </nav>
           <a className="header-don" href="/don">
             Faire un don
           </a>

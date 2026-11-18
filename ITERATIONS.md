@@ -121,6 +121,7 @@ temps de build.
     - `frontend/src/app/fil/page.tsx`, `don/page.tsx`, `nous-soutenir/page.tsx`, `association/page.tsx`, `contact/page.tsx` (créés) : pages placeholder, une par onglet — sert le critère 2.
     - `frontend/src/app/globals.css` : styles de la barre d'onglets (`.onglets`) et classe partagée `.page-rubrique`.
     - `e2e/demo.spec.ts` : ajout de l'étape « clic sur l'onglet Fil d'actualité ».
+  - **Correction post-livraison** (même itération, avant tour de test — le développeur a pointé `passation/croquis/ecran-06-Écran-3.png` comme référence exacte) : le header ne devait garder qu'un seul niveau de navigation (logo + bouton « Faire un don »), pas deux barres superposées. La nav par profil (`header-menu`) est supprimée du header ; les profils redeviennent des **boutons dans le contenu de l'accueil** (fond coloré, comme sur le croquis), sous le titre et la barre d'onglets. Fichiers retouchés : `layout.tsx` (suppression du nav profils), `page.tsx` (boutons `.profil-bouton` à fond coloré au lieu de liens texte), `globals.css` (classe `.profil-bouton`, suppression de `.header-menu`), `e2e/demo.spec.ts` (locators simplifiés, plus besoin de scoper `.header-menu`). Redéployé et re-signalé sous le numéro de version 2 (le tour de test n'avait pas encore eu lieu).
 
 ---
 
