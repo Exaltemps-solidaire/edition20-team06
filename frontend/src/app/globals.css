@@ -71,12 +71,17 @@ body {
 
 .hero {
   text-align: center;
-  max-width: 760px;
+  max-width: 900px;
   margin: 0 auto 32px;
+  background: #e0ecfa;
+  border-radius: 12px;
+  padding: 40px 24px;
 }
 
 .hero h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #201a4d;
   margin-bottom: 12px;
 }
 
@@ -96,15 +101,29 @@ body {
   padding: 20px;
 }
 
+.profil-carte-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
 .profil-carte-kicker {
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
   font-size: 0.8rem;
   margin-bottom: 8px;
 }
 
 .profil-carte h2 {
   font-size: 1.1rem;
+  font-weight: 800;
+  color: #201a4d;
   margin-bottom: 8px;
 }
 

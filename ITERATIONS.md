@@ -198,6 +198,29 @@ Le développeur a pointé les photos de `passation/croquis/`, pas encore examin�
     - `frontend/src/app/contact/page.tsx` — formulaire non fonctionnel, bloc newsletter non fonctionnel (maquette), section Mentions — sert le critère 1.
     - `frontend/src/app/globals.css` — styles des sections de rubrique, du bouton de don, et du formulaire de contact.
 
+## Itération 5 : l'accueil reprend fidèlement le visuel de `ecran-01` (icônes, couleurs par profil)
+
+- **Dans le périmètre** : icône par profil (cœur, goutte, mallette, drapeau — comme le croquis), couleurs des 4 cartes alignées sur le croquis (rose, violet, sarcelle, orange), fond teinté du hero, titre en bleu nuit gras, cartes avec cercle d'icône teinté.
+- **Hors périmètre** : nouvelles images/illustrations réelles, modification du contenu texte (déjà posé en itération 3).
+- **Critères d'acceptation** :
+  - Étant donné l'accueil, quand il s'affiche, alors chaque carte a une icône dans un cercle teinté et une couleur de bordure/kicker qui reprend celle du croquis.
+  - Étant donné l'accueil, quand il s'affiche, alors le hero a un fond teinté et le titre est en gras foncé, comme le croquis.
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : aucune nouvelle — ajustement visuel demandé directement par le développeur.
+- **Codage estimé** : 6-7 minutes.
+- **⚠️ Écart à signaler aux cadreurs** : les couleurs violet/sarcelle/orange des cartes Testateurs/Entreprises/Organisateurs ne font pas partie de la charte graphique officielle (`--i4m-*` de `passation/prototype/index.html`, qui ne connaît que bleu/rose). Le développeur a explicitement demandé de reprendre les couleurs du croquis ; je l'applique tel quel, mais ce point mérite confirmation du pôle communication avant la mise en production finale.
+- **Bilan** :
+  - Codage réel : <1 minute.
+  - Critères satisfaits : les 3 — icônes (cœur, goutte, mallette, drapeau) dans un cercle teinté par profil, couleurs des cartes alignées sur le croquis, hero avec fond teinté bleu clair et titre en bleu nuit gras, `/health` et `/sante` en 200.
+  - `npm test` : 4 tests passent (test `profils.test.ts` mis à jour pour la nouvelle couleur et le champ `icone`).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 5.
+  - **Modifications** :
+    - `frontend/src/lib/profils.ts` — couleurs et icônes alignées sur `ecran-01` (⚠️ hors charte graphique pour 3 des 4 profils, voir plus haut).
+    - `frontend/src/lib/profils.test.ts` — test mis à jour pour la nouvelle couleur et le champ `icone`.
+    - `frontend/src/app/page.tsx` — cercle d'icône par carte de profil.
+    - `frontend/src/app/globals.css` — fond teinté et titre gras foncé du hero, cercle d'icône et titre de carte en bleu nuit.
+
 ## À venir (non détaillé)
 
 1. Écran « Qui êtes-vous ? » au lancement (persona switcher).

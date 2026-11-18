@@ -2,17 +2,20 @@ export type Profil = {
   slug: string;
   nom: string;
   couleur: string;
+  icone: string;
   accroche: string;
   description: string;
   cta: string;
 };
 
-// Couleurs reprises de la charte graphique (passation/prototype/index.html, --i4m-*).
+// Couleurs et icônes reprises du croquis passation/croquis/ecran-01 (⚠️ hors charte graphique officielle
+// pour testateurs/entreprises/organisateurs — à faire confirmer par les cadreurs, cf. ITERATIONS.md Itération 5).
 const PROFILS: readonly Profil[] = [
   {
     slug: "particuliers",
     nom: "Particuliers",
-    couleur: "#ec64a0",
+    couleur: "#ec4899",
+    icone: "♥",
     accroche: "Je veux donner ou courir",
     description: "Faire un don, m'inscrire à une course solidaire, créer ma page de collecte.",
     cta: "Faire un don",
@@ -20,7 +23,8 @@ const PROFILS: readonly Profil[] = [
   {
     slug: "testateurs",
     nom: "Testateurs",
-    couleur: "#83bce7",
+    couleur: "#7c3aed",
+    icone: "💧",
     accroche: "Je souhaite transmettre",
     description: "Legs, donation, assurance-vie : préparer une transmission en toute sérénité.",
     cta: "Préparer ma transmission",
@@ -28,7 +32,8 @@ const PROFILS: readonly Profil[] = [
   {
     slug: "entreprises",
     nom: "Entreprises",
-    couleur: "#e64587",
+    couleur: "#0d9488",
+    icone: "💼",
     accroche: "J'engage mon entreprise",
     description: "Mécénat, équipe de coureurs, mobilisation des collaborateurs.",
     cta: "Devenir partenaire",
@@ -36,7 +41,8 @@ const PROFILS: readonly Profil[] = [
   {
     slug: "organisateurs",
     nom: "Organisateurs",
-    couleur: "#11a2dd",
+    couleur: "#f97316",
+    icone: "🚩",
     accroche: "J'organise un événement",
     description: "Course, tournoi, concert, vente... collecter au profit de la recherche.",
     cta: "Organiser une action",

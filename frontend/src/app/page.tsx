@@ -11,6 +11,13 @@ export default function Home() {
       <ul className="profils-cartes">
         {listerProfils().map((profil) => (
           <li key={profil.slug} className="profil-carte" style={{ borderTopColor: profil.couleur }}>
+            <span
+              className="profil-carte-icone"
+              style={{ background: `${profil.couleur}22`, color: profil.couleur }}
+              aria-hidden="true"
+            >
+              {profil.icone}
+            </span>
             <p className="profil-carte-kicker" style={{ color: profil.couleur }}>
               {profil.nom}
             </p>

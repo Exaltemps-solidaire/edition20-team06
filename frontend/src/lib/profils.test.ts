@@ -7,7 +7,8 @@ describe("getProfil", () => {
     expect(profil).toEqual({
       slug: "organisateurs",
       nom: "Organisateurs",
-      couleur: "#11a2dd",
+      couleur: "#f97316",
+      icone: "🚩",
       accroche: "J'organise un événement",
       description: "Course, tournoi, concert, vente... collecter au profit de la recherche.",
       cta: "Organiser une action",
