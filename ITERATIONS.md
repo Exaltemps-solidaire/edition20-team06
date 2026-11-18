@@ -266,7 +266,28 @@ Le développeur a pointé les photos de `passation/croquis/`, pas encore examin�
     - `frontend/src/app/nous-soutenir/page.tsx` — hero + 3 sections de cartes (Entreprises, Collectifs, Partenaires) avec icône/titre/description concrets, CTA vers `/contact` — sert les 2 premiers critères. ❓ Section Partenaires volontairement générique (par type d'organisation) : les vrais noms/logos de partenaires n'existent pas dans la passation, à fournir par l'association.
     - `frontend/src/app/globals.css` — styles du hero compact et des cartes de la page Nous soutenir.
 
+## Itération 8 : la page l'Association devient concrète, avec des faits réels et des photos (placeholder)
+
+- **Dans le périmètre** : les 4 sections du sitemap (Mission, Équipe, Rapports, Actions) remplies avec les faits réels de `passation/contexte/association.md` (création 2011, RUP 2024, label IDEAS 2018, 17 salariés, 1 800 bénévoles, 7,4 M€ de ressources 2025, 4 missions, Fight Kids Cancer, colloque FAST, Septembre en Or, Course Enfants sans Cancer, Rallyes du Cœur, 200+ actions/an) ; des blocs photo (placeholder visuel, pas de vraie image) sur les cartes d'action et le hero.
+- **Hors périmètre (❓)** : vraies photos (aucune fournie dans la passation — blocs teintés en attendant), vrai document de rapport annuel à télécharger (la passation ne fournit que les chiffres, pas le PDF), noms de l'équipe (non communiqués, remplacés par des chiffres d'effectif).
+- **Critères d'acceptation** :
+  - Étant donné `/association`, quand elle s'affiche, alors les 4 sections montrent des faits réels et sourcés (pas de paragraphe générique ni de chiffre inventé).
+  - Étant donné `/association`, quand elle s'affiche, alors au moins 3 blocs photo (placeholder) sont visibles dans la section Actions.
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : aucune nouvelle — ajustement de contenu demandé directement par le développeur.
+- **Codage estimé** : 7-8 minutes.
+- **Bilan** :
+  - Codage réel : <1 minute.
+  - Critères satisfaits : les 3 — 4 sections remplies avec des faits sourcés de `passation/contexte/association.md` (dates, chiffres, missions, événements réels), 3 blocs photo placeholder dans la section Actions (+ 1 dans Équipe), `/health` et `/sante` en 200.
+  - `npm test` : 7 tests passent (inchangé — contenu/balisage, pas de nouvelle logique métier).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 8.
+  - **Modifications** :
+    - `frontend/src/app/association/page.tsx` — hero + 4 sections (Mission, Équipe, Rapports, Actions) avec faits réels et blocs photo placeholder — sert les 2 premiers critères. ❓ Pas de vraies photos ni de vrai PDF de rapport dans la passation ; noms de l'équipe non communiqués (remplacés par des chiffres d'effectif).
+    - `frontend/src/app/globals.css` — styles de la section Équipe (chiffres), des cartes d'action avec photo, et du bloc photo de l'équipe.
+
 ## À venir (non détaillé)
 
 1. Écran « Qui êtes-vous ? » au lancement (persona switcher), et filtre par profil sur Le Fil (`ecran-06`).
 2. Le Fil – publication réelle par le responsable communication (étape 3 du plan de l'équipe) ; menus Trier/Période/Public/Sujet.
+3. Remplacer les blocs photo placeholder de l'Association par de vraies photos fournies par l'association.
