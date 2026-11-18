@@ -314,10 +314,36 @@ Deux écarts signalés, non tranchés par l'agent :
     - `frontend/src/app/page.tsx` — hero à deux colonnes avec CTA, titre de section, cartes avec photo placeholder et bouton plein — sert les 2 premiers critères. ❗️ Logos partenaires et fusion à 3 profils volontairement non repris (voir note ci-dessus).
     - `frontend/src/app/globals.css` — styles `.hero-deux-colonnes`, `.hero-contenu`, `.hero-photo`, `.hero-ctas`, `.hero-cta-primaire`/`.hero-cta-secondaire`, `.profils-intro`, `.profil-carte-photo`, `.profil-carte-cta`.
 
+## Itération 10 : le reste du mockup `Ensemble contre le cancer des enfants.png` repris en un seul passage, sur demande explicite du développeur (« Fais tout d'un coup »)
+
+- ❗️ **Dépassement assumé des règles de taille** : un seul objectif/≤5 fichiers/10 min de codage ne tiennent pas pour 5 sections nouvelles à la fois. Fait d'un coup sur demande explicite et répétée du développeur ; signalé comme tel plutôt que présenté comme une itération normale.
+- **Dans le périmètre** : section « Agir à votre manière » (grille de 6 cartes : don, course solidaire, collecte, legs, bénévolat, organiser une action) ; bandeau « Mobilisez votre organisation » (photo placeholder + CTA « Devenir partenaire » + bouton désactivé « Télécharger la plaquette ») ; bande « Ils nous soutiennent » (tuiles génériques, sans nom ni logo) ; section stats d'impact (3 chiffres réels déjà sourcés) ; méga-footer sitewide (4 colonnes de liens internes, bouton don, icônes réseaux décoratives, bandeau mentions légales).
+- **Hors périmètre (❗️, volontairement non repris)** :
+  - Les logos nommés du mockup (L'Oréal, Société Générale, Sanofi, BNP Paribas, Allianz, Crédit Mutuel) — non confirmés comme partenaires réels dans la passation, remplacés par des tuiles neutres + une note explicite.
+  - La carte « Soutenir via l'IFI » du mockup — mécanique fiscale précise non confirmée dans la passation ; remplacée par « Devenir bénévole » (fait réel : 1 800 bénévoles).
+  - Vraies photos, vrais comptes réseaux sociaux, vraie plaquette PDF, vraies pages de mentions légales séparées (les liens « Mentions légales »/« Politique de confidentialité » renvoient vers `/contact`, qui porte déjà une section Mentions).
+- **Critères d'acceptation** :
+  - Étant donné l'accueil, quand il s'affiche, alors les 5 nouvelles sections (Agir à votre manière, bandeau mobilisation, partenaires, impact, footer) sont visibles.
+  - Étant donné n'importe quelle page du site, quand elle s'affiche, alors le méga-footer est visible en bas (sitewide, dans `layout.tsx`).
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : aucune nouvelle — demande directe du développeur, au-delà du plan de livraison initial.
+- **Codage estimé** : non chiffré en budget normal (hors gabarit 10 min, demande explicite de tout faire d'un coup).
+- **Bilan** :
+  - Codage réel : ~2 minutes.
+  - Critères satisfaits : les 3 — 5 sections ajoutées sur l'accueil, footer visible sur toutes les pages, `/health` et `/sante` en 200 (vérifié par `curl` sur `localhost:8080`/`:8081` après redéploiement).
+  - `npm test` : 7 tests passent (inchangé — pur contenu/balisage, pas de nouvelle logique métier).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 10.
+  - **Modifications** :
+    - `frontend/src/app/page.tsx` — ajout des 4 sections (Agir à votre manière, bandeau mobilisation, partenaires, impact) après les cartes de profil — sert le critère 1. ❗️ Carte IFI remplacée par bénévolat, logos remplacés par tuiles génériques (voir ci-dessus).
+    - `frontend/src/components/Footer.tsx` (créé) — méga-footer (4 colonnes de liens internes, bouton don, icônes réseaux décoratives non fonctionnelles, bandeau mentions légales vers `/contact`) — sert le critère 2.
+    - `frontend/src/app/layout.tsx` — intégration du `Footer` sitewide, sous `{children}`.
+    - `frontend/src/app/globals.css` — styles des 5 nouvelles sections et du footer.
+
 ## À venir (non détaillé)
 
 1. Écran « Qui êtes-vous ? » au lancement (persona switcher), et filtre par profil sur Le Fil (`ecran-06`).
 2. Le Fil – publication réelle par le responsable communication (étape 3 du plan de l'équipe) ; menus Trier/Période/Public/Sujet.
-3. Remplacer les blocs photo placeholder de l'Association (et de l'accueil) par de vraies photos fournies par l'association.
-4. Accueil : grille « Agir à votre manière » (6 façons d'agir), bandeau « Mobilisez votre organisation », stats d'impact, méga-footer — repris du mockup `Ensemble contre le cancer des enfants.png`, après confirmation du développeur sur le périmètre.
-5. ❓ Bande de partenaires : à faire avec de vrais logos et noms confirmés par l'association, pas ceux vus dans le mockup.
+3. Remplacer les blocs photo placeholder (Association, accueil, bandeau mobilisation) par de vraies photos fournies par l'association.
+4. ❓ Bande de partenaires et icônes réseaux sociaux : à faire avec de vrais logos/comptes confirmés par l'association, pas ceux vus dans le mockup.
+5. ❓ Plaquette de mobilisation (PDF réel) et pages dédiées Mentions légales / Politique de confidentialité (actuellement redirigées vers `/contact`).
