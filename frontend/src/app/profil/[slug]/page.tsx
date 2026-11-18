@@ -19,6 +19,8 @@ export default async function ProfilPage({
   return (
     <main className="landing-profil" style={{ borderTop: `6px solid ${profil.couleur}` }}>
       <h1 style={{ color: profil.couleur }}>{profil.nom}</h1>
+      <p className="landing-profil-accroche">{profil.accroche}</p>
+      <p>{profil.description}</p>
       <button type="button" style={{ backgroundColor: profil.couleur }}>
         {profil.cta}
       </button>

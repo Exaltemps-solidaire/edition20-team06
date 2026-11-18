@@ -8,6 +8,8 @@ describe("getProfil", () => {
       slug: "organisateurs",
       nom: "Organisateurs",
       couleur: "#11a2dd",
+      accroche: "J'organise un événement",
+      description: "Course, tournoi, concert, vente... collecter au profit de la recherche.",
       cta: "Organiser une action",
     });
   });

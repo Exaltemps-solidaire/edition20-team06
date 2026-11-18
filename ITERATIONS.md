@@ -125,13 +125,60 @@ temps de build.
 
 ---
 
-## À venir (non détaillé, à affiner si le temps est prolongé)
+## ⚠️ Nouvelle source trouvée : `passation/croquis/` (2026-11-18, ~30 min restantes)
 
-1. Itération 3 : page Fil d'actualité (articles à la une + filtres) — correspond aussi à l'étape 2 du plan de livraison de l'équipe.
-2. Itération 4 : page Faire un don (texte explicatif + renvoi vers iRaiser, pas de formulaire propre).
-3. Itération 5 : Nous soutenir — sous-page Entreprises partenaires.
-4. Itération 6 : Nous soutenir — sous-page Actions solidaires effectuées.
-5. Itération 7 : Contact — formulaire (+ newsletter selon la réponse du développeur à la question ❓ ci-dessus).
-6. ❓ Landing pages Particuliers et Testateurs, pour compléter les 4 profils du header — la passation ne donne pas de CTA pour ces deux profils (contrairement à Organisateurs et Entreprises) : à demander aux cadreurs avant de coder, ou à proposer par analogie.
-7. Écran « Qui êtes-vous ? » au lancement (choix d'une persona par rôle, bouton pour en changer).
-8. Le Fil – liste filtrée avec publication : le responsable communication crée un article, lui attribue une catégorie, le publie (étape 3 du plan de l'équipe).
+Le développeur a pointé les photos de `passation/croquis/`, pas encore examinées en détail jusqu'ici :
+- `ecran-01`/`ecran-02` : hero d'accueil avec 4 **cartes de profil** (icône, barre de couleur, accroche en gras, description, lien « Mon parcours → ») pour Particulier, Testateur, Entreprise, Organisateur — texte complet lisible sur la photo.
+- `ecran-03` : un plan de site (Accueil → Le Fil / Faire un don / Nous soutenir / l'Association / Contact, chacun avec ses sous-pages) qui correspond à la demande du développeur plus tôt dans la session.
+- `ecran-04/05/06` : 3 variantes de la page Le Fil (recherche, onglets de catégorie, tri/période/public, cartes d'articles).
+
+❓ **Résolu** : le texte des cartes `ecran-01` donne enfin une accroche et une description pour Particuliers et Testateurs (absentes du texte de `PASSATION.md`) :
+- Particulier : « Je veux donner ou courir » / « Faire un don, m'inscrire à une course solidaire, créer ma page de collecte. »
+- Testateur : « Je souhaite transmettre » / « Legs, donation, assurance-vie : préparer une transmission en toute sérénité. »
+
+⚠️ Le CTA bouton de leur landing page (différent de l'accroche de la carte) n'est toujours pas donné littéralement : proposé par analogie avec le ton des deux CTA déjà validés (« Organiser une action », « Devenir partenaire ») — « Faire un don » pour Particuliers, « Préparer ma transmission » pour Testateurs. À confirmer au tour de test.
+
+⚠️ Tension non résolue avec le texte de `PASSATION.md` : le plan de site de `ecran-03` (navigation thématique) n'est écrit nulle part dans le texte retenu (qui ne parle que de segmentation par profil + Le Fil) — à faire trancher par les cadreurs.
+
+---
+
+## Itération 3 : l'accueil montre les 4 cartes de profil du croquis, et Le Fil affiche une liste d'articles filtrable (en dur)
+
+- **Dans le périmètre** :
+  - Accueil refondu : hero (titre + sous-titre du croquis) et 4 cartes de profil (Particuliers, Entreprises, Testateurs, Organisateurs) reprenant le texte de `ecran-01` (icône, couleur, accroche, description, « Mon parcours → »).
+  - `profils.ts` étendu aux 4 profils ; nouvelles landing pages Particuliers et Testateurs (CTA par analogie, voir note ci-dessus).
+  - Page `/fil` remplie selon `ecran-04` : barre de recherche (non fonctionnelle), onglets de catégorie, 3 cartes d'articles en dur (photo placeholder, catégorie, titre, date), bouton « Voir plus d'articles ».
+- **Hors périmètre** : recherche/filtres réellement fonctionnels, vraies données d'articles, pagination, Faire un don / Nous soutenir / l'Association / Contact (→ itération 4).
+- **Critères d'acceptation** :
+  - Étant donné l'accueil, quand il s'affiche, alors les 4 cartes de profil sont visibles avec leur accroche et mènent chacune à une landing page.
+  - Étant donné `/fil`, quand elle s'affiche, alors la barre de recherche, les onglets de catégorie et au moins 3 cartes d'articles sont visibles.
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : les 4 hypothèses (organisateur ≤2 clics, entreprise identification sans aide, particulier voit un contenu éditorial dès l'accueil/Le Fil, structure qui permettra au responsable comm de publier plus tard).
+- **Codage estimé** : 9-10 minutes (plus gros que l'itération 2, proche du plafond).
+- **Bilan** :
+  - Codage réel : ~5 minutes, sous le plafond, pas d'alarme déclenchée.
+  - Critères satisfaits : les 3 — 4 cartes de profil sur l'accueil avec accroche + lien, `/fil` avec recherche/onglets/3 cartes d'articles, `/health` et `/sante` répondent 200 (vérifié via `curl` local sur le conteneur, cf. point 5 de la DoD à confirmer par le développeur sur `$URL_PUBLIQUE`).
+  - `npm test` : 4 tests passent (2 racine, 2 frontend). `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Démo Playwright (`npm run demo`) : échoue localement faute de serveur X sur cette VM (« Missing X server or $DISPLAY ») — limitation de l'environnement, pas une régression du site ; non mise à jour ce tour-ci faute de pouvoir la vérifier dans le budget.
+  - Signalé : version 3.
+  - **Modifications** :
+    - `frontend/src/lib/profils.ts` — 4 profils complets (accroche, description, cta) avec le texte verbatim des croquis `ecran-01/02` et les couleurs de la charte graphique — sert les critères 1 et 2.
+    - `frontend/src/lib/profils.test.ts` — test mis à jour pour le nouveau format de `Profil`.
+    - `frontend/src/app/profil/[slug]/page.tsx` — affiche l'accroche et la description du profil.
+    - `frontend/src/app/page.tsx` — accueil refondu : hero (titre + sous-titre du croquis) + grille de 4 cartes de profil — sert le critère 1.
+    - `frontend/src/app/fil/page.tsx` — rempli : recherche (non fonctionnelle), onglets de catégorie, 3 articles en dur, bouton « Voir plus » — sert le critère 2.
+    - `frontend/src/app/globals.css` — styles hero, grille de cartes de profil, page `/fil` (recherche, onglets, cartes d'articles).
+
+---
+
+## Itération 4 (à suivre si le temps le permet) : Faire un don, Nous soutenir, l'Association, Contact remplies selon le plan de site
+
+- Chaque page affiche les sections de `ecran-03` (ex. Faire un don : Don unique / Don mensuel / Merci + reçu) avec un contenu placeholder structuré, au lieu d'un paragraphe « à venir ».
+- Contact inclut un formulaire (non fonctionnel) et un bloc newsletter (champ email + bouton, non fonctionnel — maquette, pas de vraie inscription, cf. ❓ posée précédemment, toujours sans réponse définitive du développeur).
+- Détaillée au lancement si le temps restant le permet après l'itération 3.
+
+## À venir (non détaillé)
+
+1. Écran « Qui êtes-vous ? » au lancement (persona switcher).
+2. Le Fil – liste filtrée avec publication par le responsable communication (étape 3 du plan de l'équipe).
+3. Recherche et filtres réellement fonctionnels sur Le Fil.
