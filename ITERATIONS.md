@@ -171,11 +171,32 @@ Le développeur a pointé les photos de `passation/croquis/`, pas encore examin�
 
 ---
 
-## Itération 4 (à suivre si le temps le permet) : Faire un don, Nous soutenir, l'Association, Contact remplies selon le plan de site
+## Itération 4 : Faire un don, Nous soutenir, l'Association, Contact remplies selon le plan de site (`ecran-03`)
 
-- Chaque page affiche les sections de `ecran-03` (ex. Faire un don : Don unique / Don mensuel / Merci + reçu) avec un contenu placeholder structuré, au lieu d'un paragraphe « à venir ».
-- Contact inclut un formulaire (non fonctionnel) et un bloc newsletter (champ email + bouton, non fonctionnel — maquette, pas de vraie inscription, cf. ❓ posée précédemment, toujours sans réponse définitive du développeur).
-- Détaillée au lancement si le temps restant le permet après l'itération 3.
+- **Dans le périmètre** :
+  - `Faire un don` : 3 sections structurées (Don unique, Don mensuel, Merci + reçu) ; le don réel renvoie vers iRaiser (lien externe, pas de formulaire maison — cf. règle hors-périmètre de la passation).
+  - `Nous soutenir` : 3 sections (Entreprises, Collectifs, Partenaires).
+  - `l'Association` : 4 sections (Mission, Équipe, Rapports, Actions).
+  - `Contact` : formulaire non fonctionnel, bloc newsletter non fonctionnel (maquette), section Mentions.
+- **Hors périmètre** : formulaire de don réel (iRaiser), envoi réel du formulaire de contact, vraie inscription newsletter, contenu réel (texte/chiffres) de ces sections — tout est un placeholder structuré, pas un paragraphe « à venir ».
+- **Critères d'acceptation** :
+  - Étant donné chacune des 4 pages, quand elle s'affiche, alors ses sections du sitemap (`ecran-03`) sont visibles avec un titre et un court texte, pas un simple « à venir ».
+  - Étant donné `/don`, quand on clique sur l'action de don, alors le lien pointe vers iRaiser (externe), pas vers un formulaire interne.
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : structure qui permettra au responsable comm de publier plus tard (pages institutionnelles cadrées).
+- **Codage estimé** : 8-9 minutes.
+- **Bilan** :
+  - Codage réel : <1 minute, très en dessous du plafond.
+  - Critères satisfaits : les 3 — 4 pages remplies avec leurs sections du sitemap, `/don` pointe vers un lien externe iRaiser (❓ URL réelle non fournie par la passation, placeholder `href="#"` à remplacer dès que les cadreurs la communiquent), `/health` et `/sante` répondent 200.
+  - `npm test` : 4 tests passent (inchangé — pas de nouvelle logique métier, seulement du balisage, donc pas de nouveau test requis par la DoD).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 4.
+  - **Modifications** :
+    - `frontend/src/app/don/page.tsx` — sections Don unique / Don mensuel / Merci + reçu, lien externe iRaiser (❓ URL à confirmer) — sert les critères 1 et 2.
+    - `frontend/src/app/nous-soutenir/page.tsx` — sections Entreprises / Collectifs / Partenaires — sert le critère 1.
+    - `frontend/src/app/association/page.tsx` — sections Mission / Équipe / Rapports / Actions — sert le critère 1.
+    - `frontend/src/app/contact/page.tsx` — formulaire non fonctionnel, bloc newsletter non fonctionnel (maquette), section Mentions — sert le critère 1.
+    - `frontend/src/app/globals.css` — styles des sections de rubrique, du bouton de don, et du formulaire de contact.
 
 ## À venir (non détaillé)
 

@@ -198,6 +198,71 @@ body {
   cursor: pointer;
 }
 
+.rubrique-sections {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+
+.rubrique-sections h2 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #11a2dd;
+}
+
+.don-cta {
+  display: inline-block;
+  background: #e64587;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.rubrique-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  max-width: 500px;
+}
+
+.contact-formulaire,
+.contact-newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+.contact-newsletter {
+  flex-direction: row;
+}
+
+.contact-formulaire input,
+.contact-formulaire textarea,
+.contact-newsletter input {
+  padding: 8px 12px;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.contact-formulaire button,
+.contact-newsletter button {
+  border: none;
+  background: #11a2dd;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
 .landing-profil-accroche {
   font-size: 1.2rem;
   font-weight: 600;
