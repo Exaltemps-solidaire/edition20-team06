@@ -221,8 +221,32 @@ Le développeur a pointé les photos de `passation/croquis/`, pas encore examin�
     - `frontend/src/app/page.tsx` — cercle d'icône par carte de profil.
     - `frontend/src/app/globals.css` — fond teinté et titre gras foncé du hero, cercle d'icône et titre de carte en bleu nuit.
 
+## Itération 6 : Le Fil a une section Événements et des filtres réellement fonctionnels (`ecran-04/05/06`)
+
+- **Dans le périmètre** :
+  - Section « Événements à venir » en tête de page (cartes date + titre + lieu, comme `ecran-04`/`ecran-05`).
+  - Recherche texte fonctionnelle (filtre les articles par titre) et onglets de catégorie fonctionnels (Tout / Savoirs médicaux / Recherche / Événement / Collecte / Vie de l'association), communs aux 3 croquis.
+  - Logique de filtre extraite en fonction pure testée (`filtrerArticles`).
+- **Hors périmètre (✂️)** : les menus « Trier / Période / Public / Sujet » de `ecran-04`/`ecran-06` et le filtre par persona de `ecran-06` (Parent-proche/Soignant/Chercheur/Donateur) — déjà dans le backlog « À venir » sous « persona switcher », pas repris ici pour tenir le budget ; les sections par rubrique en carrousel horizontal de `ecran-05` sont remplacées par les mêmes onglets de catégorie (fonction équivalente, un seul mécanisme de filtre au lieu de deux).
+- **Critères d'acceptation** :
+  - Étant donné `/fil`, quand elle s'affiche, alors une section « Événements à venir » liste au moins 2 événements avec date et lieu.
+  - Étant donné `/fil`, quand je tape un mot dans la recherche ou clique sur un onglet de catégorie, alors seuls les articles correspondants restent affichés.
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : recherche et filtres réellement fonctionnels sur Le Fil (item 3 du backlog).
+- **Codage estimé** : 9-10 minutes.
+- **Bilan** :
+  - Codage réel : <1 minute.
+  - Critères satisfaits : les 3 — section « Événements à venir » avec 2 cartes (date + lieu), recherche texte et onglets de catégorie qui filtrent réellement la liste côté client, `/health` et `/sante` en 200.
+  - `npm test` : 7 tests passent (3 nouveaux sur `filtrerArticles` : catégorie, recherche insensible à la casse, cas neutre).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 6.
+  - **Modifications** :
+    - `frontend/src/lib/fil.ts` — données (événements, articles, catégories) et fonction pure `filtrerArticles` — sert les critères 1 et 2.
+    - `frontend/src/lib/fil.test.ts` — 3 tests sur `filtrerArticles`.
+    - `frontend/src/app/fil/page.tsx` — passé en composant client : section événements + recherche/onglets fonctionnels (`useState`/`useMemo`) — sert les critères 1 et 2.
+    - `frontend/src/app/globals.css` — styles des cartes d'événement et des onglets de catégorie (état actif).
+
 ## À venir (non détaillé)
 
-1. Écran « Qui êtes-vous ? » au lancement (persona switcher).
-2. Le Fil – liste filtrée avec publication par le responsable communication (étape 3 du plan de l'équipe).
-3. Recherche et filtres réellement fonctionnels sur Le Fil.
+1. Écran « Qui êtes-vous ? » au lancement (persona switcher), et filtre par profil sur Le Fil (`ecran-06`).
+2. Le Fil – publication réelle par le responsable communication (étape 3 du plan de l'équipe) ; menus Trier/Période/Public/Sujet.

@@ -146,6 +146,44 @@ body {
   font-family: inherit;
 }
 
+.fil-evenements {
+  margin-bottom: 28px;
+}
+
+.fil-evenements ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.evenement-carte {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #e64587;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.evenement-date {
+  flex-shrink: 0;
+  background: #e64587;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.evenement-titre {
+  font-weight: 700;
+}
+
+.evenement-lieu {
+  font-size: 0.85rem;
+}
+
 .fil-categories {
   list-style: none;
   display: flex;
@@ -154,15 +192,18 @@ body {
   margin-bottom: 24px;
 }
 
-.fil-categories li {
+.fil-categories button {
   padding: 6px 14px;
   border-radius: 16px;
   background: #f7f7f7;
+  border: none;
   font-weight: 500;
   font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.fil-categories li.active {
+.fil-categories button.active {
   background: #11a2dd;
   color: #ffffff;
 }
@@ -196,7 +237,7 @@ body {
   color: #11a2dd;
 }
 
-.fil-article h2 {
+.fil-article h3 {
   font-size: 1rem;
   margin: 0 14px 6px;
 }
