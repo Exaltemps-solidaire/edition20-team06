@@ -246,6 +246,26 @@ Le développeur a pointé les photos de `passation/croquis/`, pas encore examin�
     - `frontend/src/app/fil/page.tsx` — passé en composant client : section événements + recherche/onglets fonctionnels (`useState`/`useMemo`) — sert les critères 1 et 2.
     - `frontend/src/app/globals.css` — styles des cartes d'événement et des onglets de catégorie (état actif).
 
+## Itération 7 : la page Nous soutenir devient concrète, avec des cartes de contenu par section
+
+- **Dans le périmètre** : les 3 sections du sitemap (Entreprises, Collectifs, Partenaires) passent d'un paragraphe unique à une grille de cartes (même gabarit visuel que l'accueil : icône, titre, description), avec un contenu par carte qui explique concrètement une façon de s'engager ; un hero en tête de page comme sur l'accueil ; un bouton « Devenir partenaire » qui renvoie vers `/contact`.
+- **Hors périmètre** : vrais noms/logos de partenaires (❓ l'association doit les fournir — la section Partenaires reste générique par type d'organisation, pas de nom inventé qui pourrait être pris pour une vraie entreprise), formulaire de candidature partenaire dédié.
+- **Critères d'acceptation** :
+  - Étant donné `/nous-soutenir`, quand la page s'affiche, alors chacune des 3 sections montre au moins 3 cartes avec un titre et une description concrète (pas un seul paragraphe générique).
+  - Étant donné `/nous-soutenir`, quand je clique sur « Devenir partenaire », alors j'arrive sur `/contact`.
+  - Étant donné l'application déployée, quand on appelle `/health` et `/sante`, alors les deux répondent 200.
+- **Hypothèse de l'équipe couverte** : aucune nouvelle — ajustement de contenu demandé directement par le développeur.
+- **Codage estimé** : 6-7 minutes.
+- **Bilan** :
+  - Codage réel : <1 minute.
+  - Critères satisfaits : les 3 — 9 cartes concrètes réparties sur les 3 sections (3 chacune), bouton « Devenir partenaire » qui renvoie vers `/contact`, `/health` et `/sante` en 200.
+  - `npm test` : 7 tests passent (inchangé — pure contenu/balisage, pas de nouvelle logique métier).
+  - `./scripts/verifier-deployabilite.sh` : aucune borne.
+  - Signalé : version 7.
+  - **Modifications** :
+    - `frontend/src/app/nous-soutenir/page.tsx` — hero + 3 sections de cartes (Entreprises, Collectifs, Partenaires) avec icône/titre/description concrets, CTA vers `/contact` — sert les 2 premiers critères. ❓ Section Partenaires volontairement générique (par type d'organisation) : les vrais noms/logos de partenaires n'existent pas dans la passation, à fournir par l'association.
+    - `frontend/src/app/globals.css` — styles du hero compact et des cartes de la page Nous soutenir.
+
 ## À venir (non détaillé)
 
 1. Écran « Qui êtes-vous ? » au lancement (persona switcher), et filtre par profil sur Le Fil (`ecran-06`).

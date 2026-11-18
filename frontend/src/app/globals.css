@@ -258,6 +258,64 @@ body {
   cursor: pointer;
 }
 
+.hero-petit {
+  padding: 28px 24px;
+  margin-bottom: 28px;
+}
+
+.hero-petit h1 {
+  font-size: 1.6rem;
+}
+
+.hero-petit p {
+  font-size: 0.95rem;
+}
+
+.soutien-section {
+  margin-bottom: 32px;
+}
+
+.soutien-section h2 {
+  font-size: 1.2rem;
+  color: #201a4d;
+  margin-bottom: 14px;
+}
+
+.soutien-cartes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.soutien-carte {
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+}
+
+.soutien-carte-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e0ecfa;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.soutien-carte h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #201a4d;
+}
+
+.soutien-cta {
+  margin-top: 8px;
+}
+
 .rubrique-sections {
   list-style: none;
   display: grid;
